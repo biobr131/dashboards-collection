@@ -20,7 +20,7 @@ services:
         REQ_TXT: "requirements.txt"
     image: biobr131/dashboards-collection-jupyter:latest
     container_name: jupyter
-    command: mamba run --name pharma-data-science jupyter lab --ip=0.0.0.0 --allow-root --LabApp.token=''
+    command: mamba run --name pharma-data-science jupyter lab --ip=0.0.0.0 --allow-root --LabApp.token='' --ServerApp.base_url=/jupyter/ --ServerApp.trust_xheaders=True
     ports:
      - "8888:8888"
     volumes:
@@ -29,6 +29,14 @@ services:
     stdin_open: true
     depends_on:
       - postgres
+  nginx:
+    image: biobr131/dashboards-collection-nginx:latest
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - jupyter
 
 volumes:
   postgres_data:
