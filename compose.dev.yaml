@@ -14,11 +14,12 @@ services:
     build: 
       context: ./notebooks
       args:
-        DIR_WORK: "/usr/src"
+        DIR_WORK: "usr/src"
         ENV_YML: "environment.yaml"
         VENV: "pharma-data-science"
-        REQ_TXT: "requirements.txt"
-    image: biobr131/dashboards-collection-jupyter:latest
+        REQ_DIR: "requirements"
+        REQ_TXT: "dev.txt"
+    image: biobr131/dashboards-collection-jupyter-dev:latest
     container_name: jupyter
     command: mamba run --name pharma-data-science jupyter lab --ip=0.0.0.0 --allow-root --LabApp.token='' --ServerApp.base_url=/jupyter/ --ServerApp.trust_xheaders=True
     ports:
