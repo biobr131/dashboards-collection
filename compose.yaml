@@ -10,6 +10,25 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  jupyter:
+    build: 
+      context: ./notebooks
+      args:
+        DIR_WORK: "/usr/src"
+        ENV_YML: "environment.yaml"
+        VENV: "pharma-data-science"
+        REQ_TXT: "requirements.txt"
+    image: biobr131/dashboards-collection-jupyter:latest
+    container_name: jupyter
+    command: mamba run --name pharma-data-science jupyter lab --ip=0.0.0.0 --allow-root --LabApp.token=''
+    ports:
+     - "8888:8888"
+    volumes:
+     - ./notebooks:/usr/src
+    tty: true
+    stdin_open: true
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:

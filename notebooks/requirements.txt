@@ -1,0 +1,43 @@
+black
+ruff
+mypy
+tox
+line_profiler
+memory_profiler
+pytest
+pytest-snapshot
+structlog
+pytest-structlog
+sphinx
+sphinx-rtd-theme
+numpy
+scipy
+matplotlib
+plotly
+openpyxl
+pandas[performance, plot, computation, excel, parquet, fss, aws, gcp]
+polars-lts-cpu
+ibis-framework[pandas, polars]
+statsmodels
+seaborn
+fastcluster
+requests
+scikit-learn
+rdkit
+biopython
+anndata
+scanpy
+jupyterlab
+ipywidgets
+ipympl
+python-dotenv
+psycopg[binary]
+sqlalchemy
+sqlacodegen
+torch --index-url https://download.pytorch.org/whl/cpu
+google-cloud-bigquery
+boto3
+s3fs
+pyarrow
+azure-storage-blob
+adlfs
