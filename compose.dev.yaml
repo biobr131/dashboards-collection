@@ -30,6 +30,21 @@ services:
     stdin_open: true
     depends_on:
       - postgres
+  rstudio:
+    build: ./rstudio
+    image: biobr131/dashboards-collection-rstudio:latest
+    container_name: rstudio
+    environment:
+      - TZ=Asia/Tokyo
+    env_file:
+      - ./rstudio/.env
+    ports:
+     - "8787:8787"
+    volumes:
+     - ./rstudio/R/bioconductor_docker:/usr/local/lib/R/host-site-library
+     - ./rstudio/R/data:/home/rstudio
+    tty: true
+    stdin_open: true
   nginx:
     image: biobr131/dashboards-collection-nginx-dev:latest
     container_name: nginx
