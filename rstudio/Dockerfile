@@ -13,3 +13,7 @@ RUN apt-get update && \
 COPY install_packages.R /tmp/
 RUN Rscript /tmp/install_packages.R && \
     rm /tmp/install_packages.R
+
+COPY rserver.conf /etc/rstudio/rserver.conf
+
+CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0"]
