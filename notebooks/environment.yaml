@@ -14,6 +14,13 @@ dependencies:
   - r-seurat
   - r-anndata
   - r-irkernel
+  - r-dbi
+  - r-rpostgres
+  - r-pool
+  - r-plotly
+  - r-flexdashboard
+  - r-rmarkdown
+  - r-knitr
   - r-bigrquery
   - r-aws.s3
   - r-azurestor
