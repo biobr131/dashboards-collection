@@ -10,7 +10,6 @@ cran_packages <- c(
     "RPostgres",
     "pool",
     "plotly",
-    "reactable",
     "flexdashboard",
     "rmarkdown",
     "knitr",
