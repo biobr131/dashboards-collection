@@ -1,5 +1,4 @@
 structlog
-pytest-structlog
 numpy
 scipy
 matplotlib
