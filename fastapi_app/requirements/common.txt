@@ -1,0 +1,12 @@
+structlog
+plotly
+python-dotenv
+psycopg[binary]
+uvicorn[standard]
+sqlalchemy
+sqlacodegen
+pydantic
+sqlmodel
+fastapi[all]
+fastapi-users[sqlalchemy]
+fastapi-structlog

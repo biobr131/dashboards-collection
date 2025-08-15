@@ -96,6 +96,23 @@ services:
       - ./flask_app/postgres/.env
     depends_on:
       - postgres
+  fastapi:
+    image: biobr131/dashboards-collection-fastapi:latest
+    container_name: fastapi
+    build: 
+      context: ./fastapi_app
+      args:
+        REQ_DIR: "requirements"
+        REQ_TXT: "prod.txt"
+    environment:
+      - DEBUG=False
+    command: uvicorn main:app --host=0.0.0.0 --port=8001
+    volumes:
+      - ./fastapi_app:/usr/src
+    expose:
+      - "8001"
+    depends_on:
+      - postgres
   nginx:
     image: biobr131/dashboards-collection-nginx:latest
     container_name: nginx
