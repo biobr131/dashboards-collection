@@ -62,6 +62,23 @@ services:
     stdin_open: true
     depends_on:
       - postgres
+  django:
+    image: biobr131/dashboards-collection-django:latest
+    container_name: django
+    build:
+      context: ./django_app
+      args:
+        REQ_DIR: "requirements"
+        REQ_TXT: "prod.txt"
+    command: gunicorn config.wsgi.prod:application --bind 0.0.0.0:8000
+    volumes:
+      - ./django_app:/usr/src
+    expose:
+      - "8000"
+    env_file:
+      - ./django_app/postgres/.env
+    depends_on:
+      - postgres
   nginx:
     image: biobr131/dashboards-collection-nginx:latest
     container_name: nginx

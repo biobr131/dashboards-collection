@@ -1,0 +1,16 @@
+-r common.txt
+black
+ruff
+mypy
+tox
+django-debug-toolbar
+django-silk
+pytest
+pytest-django
+pytest-randomly
+pytest-cov
+factory-boy
+pytest-structlog
+sphinx
+sphinxcontrib-django
+sphinx-rtd-theme
