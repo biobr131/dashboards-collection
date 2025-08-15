@@ -1,0 +1,9 @@
+structlog
+plotly
+python-dotenv
+psycopg[binary]
+sqlalchemy
+sqlacodegen
+gunicorn
+Flask
+flask-sqlalchemy

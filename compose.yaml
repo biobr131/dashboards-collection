@@ -79,6 +79,23 @@ services:
       - ./django_app/postgres/.env
     depends_on:
       - postgres
+  flask:
+    image: biobr131/dashboards-collection-flask:latest
+    container_name: flask
+    build: 
+      context: ./flask_app
+      args:
+        REQ_DIR: "requirements"
+        REQ_TXT: "prod.txt"
+    command: gunicorn main:app -b 0.0.0.0:5000
+    volumes:
+      - ./flask_app:/usr/src
+    expose:
+      - "5000"
+    env_file:
+      - ./flask_app/postgres/.env
+    depends_on:
+      - postgres
   nginx:
     image: biobr131/dashboards-collection-nginx:latest
     container_name: nginx
