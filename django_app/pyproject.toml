@@ -33,6 +33,7 @@ python_files = ["test_*.py"]
 addopts = "-v --reuse-db"
 testpaths = ["tests"]
 django_debug_mode = true
+norecursedirs = '.venv'
 
 [tool.ruff]
 lint.ignore = ['E501']
