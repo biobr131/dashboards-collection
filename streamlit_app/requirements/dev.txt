@@ -1,0 +1,12 @@
+-r common.txt
+black
+ruff
+mypy
+tox
+line_profiler
+memory_profiler
+pytest
+pytest-snapshot
+pytest-structlog
+sphinx
+sphinx-rtd-theme

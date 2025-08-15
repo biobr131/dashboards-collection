@@ -45,6 +45,23 @@ services:
      - ./rstudio/R/data:/home/rstudio
     tty: true
     stdin_open: true
+  streamlit:
+    build: 
+      context: ./streamlit_app
+      args:
+        REQ_DIR: "requirements"
+        REQ_TXT: "prod.txt"
+    image: biobr131/dashboards-collection-streamlit:latest
+    container_name: streamlit
+    command: streamlit hello
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./streamlit_app:/usr/src
+    tty: true
+    stdin_open: true
+    depends_on:
+      - postgres
   nginx:
     image: biobr131/dashboards-collection-nginx:latest
     container_name: nginx

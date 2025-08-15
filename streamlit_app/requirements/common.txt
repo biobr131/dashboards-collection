@@ -1,0 +1,23 @@
+structlog
+numpy
+scipy
+matplotlib
+plotly
+openpyxl
+pandas[performance, plot, computation, excel, hdf5]
+polars-lts-cpu
+ibis-framework[pandas, polars]
+statsmodels
+seaborn
+fastcluster
+scikit-learn
+rdkit
+biopython
+anndata
+scanpy[leiden]
+python-dotenv
+psycopg[binary]
+sqlalchemy
+sqlacodegen
+torch --index-url https://download.pytorch.org/whl/cpu
+streamlit
