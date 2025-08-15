@@ -11,4 +11,6 @@ RUN pip install --upgrade pip && \
 RUN useradd --create-home --shell /bin/bash django
 USER django
 
+EXPOSE 8000
+
 CMD ["/bin/bash"]

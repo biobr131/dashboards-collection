@@ -11,4 +11,6 @@ RUN pip install --upgrade pip && \
 RUN useradd --create-home --shell /bin/bash fastapi
 USER fastapi
 
+EXPOSE 8001
+
 CMD ["/bin/bash"]

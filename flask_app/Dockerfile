@@ -10,5 +10,7 @@ RUN pip install --upgrade pip && \
 
 RUN useradd --create-home --shell /bin/bash flask
 USER flask
-    
+
+EXPOSE 5000
+
 CMD ["/bin/bash"]
