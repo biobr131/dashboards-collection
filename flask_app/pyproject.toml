@@ -29,6 +29,7 @@ legacy_tox_ini = """
 python_files = ["test_*.py"]
 addopts = "-v --reuse-db"
 testpaths = ["tests"]
+norecursedirs = '.venv'
 
 [tool.coverage.run]
 branch = true
