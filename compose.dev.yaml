@@ -105,7 +105,7 @@ services:
         REQ_DIR: "requirements"
         REQ_TXT: "dev.txt"
     environment:
-      - DEBUG=False
+      - DEBUG=True
     command: uvicorn main:app --host=0.0.0.0 --port=8001 --reload
     volumes:
       - ./fastapi_app:/usr/src
