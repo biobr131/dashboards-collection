@@ -4,7 +4,7 @@ scipy
 matplotlib
 plotly
 openpyxl
-pandas[performance, plot, computation, excel, parquet, fss, aws, gcp]
+pandas[performance, plot, computation, excel, hdf5, parquet, fss, aws, gcp]
 polars-lts-cpu
 ibis-framework[pandas, polars]
 statsmodels
@@ -15,7 +15,7 @@ scikit-learn
 rdkit
 biopython
 anndata
-scanpy
+scanpy[leiden]
 jupyterlab
 ipywidgets
 ipympl
