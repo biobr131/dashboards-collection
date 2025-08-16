@@ -11,16 +11,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
   jupyter:
+    image: biobr131/dashboards-collection-jupyter-dev:latest
+    container_name: jupyter
     build: 
-      context: ./notebooks
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.jupyter
       args:
-        DIR_WORK: "usr/src"
+        SERVICE_DIR: "notebooks"
+        POSTGRE_DIR: "postgres"
         ENV_YML: "environment.yaml"
         VENV: "pharma-data-science"
         REQ_DIR: "requirements"
         REQ_TXT: "dev.txt"
-    image: biobr131/dashboards-collection-jupyter-dev:latest
-    container_name: jupyter
     command: mamba run --name pharma-data-science jupyter lab --ip=0.0.0.0 --allow-root --LabApp.token='' --ServerApp.base_url=/jupyter/ --ServerApp.trust_xheaders=True
     ports:
      - "8888:8888"
@@ -31,9 +33,14 @@ services:
     depends_on:
       - postgres
   rstudio:
-    build: ./rstudio
     image: biobr131/dashboards-collection-rstudio:latest
     container_name: rstudio
+    build: 
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.rstudio
+      args:
+        SERVICE_DIR: "django_app"
+        POSTGRE_DIR: "postgres"
     environment:
       - TZ=Asia/Tokyo
     env_file:
@@ -46,13 +53,16 @@ services:
     tty: true
     stdin_open: true
   streamlit:
-    build: 
-      context: ./streamlit_app
-      args:
-        REQ_DIR: "requirements"
-        REQ_TXT: "dev.txt"
     image: biobr131/dashboards-collection-streamlit-dev:latest
     container_name: streamlit
+    build: 
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.streamlit
+      args:
+        SERVICE_DIR: "streamlit_app"
+        POSTGRE_DIR: "postgres"
+        REQ_DIR: "requirements"
+        REQ_TXT: "dev.txt"
     command: streamlit hello
     ports:
       - "8501:8501"
@@ -66,8 +76,11 @@ services:
     image: biobr131/dashboards-collection-django-dev:latest
     container_name: django
     build:
-      context: ./django_app
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.django
       args:
+        SERVICE_DIR: "django_app"
+        POSTGRE_DIR: "postgres"
         REQ_DIR: "requirements"
         REQ_TXT: "dev.txt"
     command: gunicorn config.wsgi.dev:application --bind 0.0.0.0:8000
@@ -83,8 +96,11 @@ services:
     image: biobr131/dashboards-collection-flask-dev:latest
     container_name: flask
     build: 
-      context: ./flask_app
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.flask
       args:
+        SERVICE_DIR: "flask_app"
+        POSTGRE_DIR: "postgres"
         REQ_DIR: "requirements"
         REQ_TXT: "dev.txt"
     command: gunicorn main:app -b 0.0.0.0:5000
@@ -100,8 +116,11 @@ services:
     image: biobr131/dashboards-collection-fastapi-dev:latest
     container_name: fastapi
     build: 
-      context: ./fastapi_app
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.fastapi
       args:
+        SERVICE_DIR: "fastapi_app"
+        POSTGRE_DIR: "postgres"
         REQ_DIR: "requirements"
         REQ_TXT: "dev.txt"
     environment:
@@ -116,7 +135,9 @@ services:
   nginx:
     image: biobr131/dashboards-collection-nginx-dev:latest
     container_name: nginx
-    build: ./nginx/Dockerfile.dev
+    build: 
+      context: .
+      dockerfile: ./dockerfiles/dev/Dockerfile.nginx
     ports:
       - "80:80"
     depends_on:

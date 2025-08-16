@@ -1,5 +1,8 @@
 FROM bioconductor/bioconductor_docker:latest
 
+ARG POSTGRES_DIR
+COPY ${POSTGRES_DIR} ${POSTGRES_DIR}/
+
 RUN apt-get update && \
     apt-get install -y \
         libcurl4-openssl-dev \
@@ -10,7 +13,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY install_packages.R /tmp/
+ARG SERVICE_DIR
+COPY ${SERVICE_DIR}/install_packages.R /tmp/
 RUN Rscript /tmp/install_packages.R && \
     rm /tmp/install_packages.R
 
