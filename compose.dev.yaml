@@ -85,11 +85,11 @@ services:
         REQ_TXT: "dev.txt"
     command: gunicorn config.wsgi.dev:application --bind 0.0.0.0:8000
     volumes:
-      - ./django_app:/usr/src
+      - ./django_app/app:/usr/src/app
     expose:
       - "8000"
     env_file:
-      - ./django_app/postgres/.env.dev
+      - ./django_app/app/config/.env.dev
     depends_on:
       - postgres
   flask:
