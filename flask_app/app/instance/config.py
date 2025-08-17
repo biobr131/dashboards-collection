@@ -1,0 +1,28 @@
+from pathlib import Path
+
+from dotenv import dotenv_values
+from sqlalchemy import URL
+
+BASE_DIR =Path(__file__).resolve().parent.parent
+
+#app_config = dotenv_values(BASE_DIR / 'instance' / '.env.dev')
+app_config = dotenv_values(BASE_DIR / 'instance' / '.env')
+
+DEBUG = app_config.get('DEBUG', 'false').lower() == 'true'
+
+SECRET_KEY = app_config['SECRET_KEY']
+
+#db_config = dotenv_values(BASE_DIR / 'postgres' / '.env.dev')
+db_config = dotenv_values(BASE_DIR / 'postgres' / '.env')
+
+DATABASE_URL = URL.create(
+        'postgresql',
+        username=db_config['POSTGRES_USER'],
+        password=db_config['POSTGRES_PASSWORD'],  # plain (unescaped) text
+        host=db_config.get('POSTGRES_HOST', 'postgres'),
+        port=db_config.get('POSTGRES_PORT', '5432'),
+        database=db_config.get('POSTGRES_DB', 'postgres'),
+        query={'options': f'-c search_path={db_config.get("POSTGRES_SCHEMA", "public")}'},
+)
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False
