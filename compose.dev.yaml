@@ -105,11 +105,11 @@ services:
         REQ_TXT: "dev.txt"
     command: gunicorn main:app -b 0.0.0.0:5000
     volumes:
-      - ./flask_app:/usr/src
+      - ./flask_app/app:/usr/src/app
     expose:
       - "5000"
     env_file:
-      - ./flask_app/postgres/.env.dev
+      - ./flask_app/app/instance/.env.dev
     depends_on:
       - postgres
   fastapi:
