@@ -10,3 +10,4 @@ pytest-snapshot
 pytest-structlog
 sphinx
 sphinx-rtd-theme
+streamlit

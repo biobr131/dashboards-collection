@@ -1,11 +1,8 @@
 structlog
 plotly
 psycopg[binary]
-gunicorn
-django
 django-environ
 django-extensions
 django-filter
 django-import-export[all]
 django-structlog
-djangorestframework
